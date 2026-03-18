@@ -3,12 +3,12 @@ spring:
     hikari:
       maximum-pool-size: 5
       minimum-idle: 1
-      idle-timeout: 30000
-      max-lifetime: 60000
+      idle-timeout: 60000
+      max-lifetime: 300000
       connection-timeout: 30000
-    url: jdbc:postgresql://dpg-d6mqjg15pdvs7394h2v0-a.oregon-postgres.render.com/student_db_0m22?sslmode=require
-    username: tady
-    password: 4ovzs9Ivmujqf0W6oaqLVYJaI8G16Ne6
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
