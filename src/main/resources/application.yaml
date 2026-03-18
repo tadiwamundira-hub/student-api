@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 60000
+      connection-timeout: 30000
+    url: jdbc:postgresql://dpg-d6mqjg15pdvs7394h2v0-a.oregon-postgres.render.com/student_db_0m22?sslmode=require
+    username: tady
+    password: 4ovzs9Ivmujqf0W6oaqLVYJaI8G16Ne6
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
