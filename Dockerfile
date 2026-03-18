@@ -1,14 +1,25 @@
-# Use official OpenJDK 17 as base
-FROM openjdk:17-jdk-slim
+# Use official Eclipse Temurin JDK 17
+FROM eclipse-temurin:17-jdk-jammy
 
-# Set working directory in container
+# Set working directory
 WORKDIR /app
 
-# Copy the Maven-built jar into the container
-COPY target/*.jar app.jar
+# Copy Maven wrapper and pom.xml first (for caching)
+COPY mvnw .
+COPY mvnw.cmd .
+COPY pom.xml .
 
-# Expose the port your Spring Boot app uses
+# Copy all source code
+COPY src ./src
+
+# Make mvnw executable
+RUN chmod +x mvnw
+
+# Build project (skip tests to avoid DB issues)
+RUN ./mvnw clean package -DskipTests
+
+# Expose Spring Boot port
 EXPOSE 8080
 
-# Run the jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Start the app
+CMD ["java", "-jar", "target/database-0.0.1-SNAPSHOT.jar"]
